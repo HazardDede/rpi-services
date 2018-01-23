@@ -1,6 +1,6 @@
 # rpi-services
 
-The purpose of this repository is to provide a docker-compose.yml to easily create, run and delete common docker containers on a raspberry (for example influxdb, grafana, rpi-monitor, ...).
+The purpose of this repository is to provide a `docker-compose.yml` to easily create, run and delete common docker containers on a raspberry (for example influxdb, grafana, rpi-monitor, ...).
 
 ## Hardware
 
@@ -41,7 +41,7 @@ I use [RPI-Monitor](http://rpi-experiences.blogspot.de/p/rpi-monitor.html) to mo
 Unfortunately you have to install the `rpimonitor` on the host machine itself, cause when running in a docker environment it would collect stats about the guest system and not the host system itself.
 To install `rpimonitor` you can follow the [installation guide](http://rpi-experiences.blogspot.de/p/rpi-monitor-installation.html).
 
-I've included a `services.conf` inside the `template` directory. This will enable `rpi-monitor` to monitor the availability of your services like `influxdb` and `gr$
+I've included a `services.conf` inside the `template` directory. This will enable `rpi-monitor` to monitor the availability of your services like `influxdb` and `grafana`
 
     sudo cp ./templates/rpimonitor.services.conf /etc/rpimonitor/services.conf
 
