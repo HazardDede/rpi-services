@@ -37,6 +37,22 @@ services:
       - ./conf/grafana.ini:/etc/grafana/grafana.ini
     container_name: grafana
 
+  influxdht22:
+    build: "https://github.com/HazardDede/influx-dht22.git"
+    links:
+      - influxdb
+    cap_add:
+      - SYS_RAWIO
+    privileged: true
+    devices:
+      - /dev/mem
+    environment:
+      - DATA_GPIO=17
+      - INFLUX_HOST=influxdb
+      - INFLUX_DATABASE=smarthome
+      - LOG_LEVEL=INFO
+    container_name: "influx-dht22"
+
   rpi-monitor:
     image: neoraptor/rpi-monitor:latest
     # restart: always
