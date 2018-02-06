@@ -47,7 +47,7 @@ services:
     devices:
       - /dev/mem
     environment:
-      - DATA_GPIO=17
+      - DATA_GPIO=18
       - INFLUX_HOST=influxdb
       - INFLUX_DATABASE=smarthome
       - LOG_LEVEL=INFO
@@ -67,6 +67,7 @@ services:
     environment:
       - GPIO_OUT=17
       - CONFIG_DIR=/conf
+    restart: always
     command: serve
     container_name: "rpi-433rc"
 
