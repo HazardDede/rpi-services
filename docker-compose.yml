@@ -53,6 +53,23 @@ services:
       - LOG_LEVEL=INFO
     container_name: "influx-dht22"
 
+  rpi-433rc:
+    build: "https://github.com/HazardDede/rpi-433rc.git"
+    cap_add:
+      - SYS_RAWIO
+    privileged: true
+    devices:
+      - /dev/mem
+    ports:
+      - "5555:5000"
+    volumes:
+      - ./conf/rpi-433rc/devices.json:/conf/devices.json
+    environment:
+      - GPIO_OUT=17
+      - CONFIG_DIR=/conf
+    command: serve
+    container_name: "rpi-433rc"
+
   rpi-monitor:
     image: neoraptor/rpi-monitor:latest
     # restart: always
