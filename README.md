@@ -96,6 +96,29 @@ If you need further customization you can modify the configuration file `./conf/
 
 TODO: Howto create Influx Data Source
 
+### MQTT
+
+`MQTT` is the short-form of `Message Queue Telemtry Transport` and is used to transfer sensor data (telemetry) from a source to potential multiple sinks. 
+The message queue (aka broker) is the `man in the middle` and receives messages that represent sensor data or complex objects and pusblishes them to a topic (known as publishing). 
+Consumer can subscribe to topics and receive data when it is available (known as subscribing).
+
+Example: A temperature sensor publishes its data to the message queue and a subscriber takes this data and forwards it to an influx database to visualize those sensor data.
+
+I use `mosquitto` as my `MQTT` service. `mosquitto` is best-suited for the Internet of Things (IoT) and the requirements of a `raspberry pi`.
+
+    # Have to change permissions for certain folders cause container runs code with another user
+    sudo mkdir /var/mqtt && sudo chown 777 /var/mqtt
+    sudo mkdir /var/log/mqtt && sudo chown 777 /var/log/mqtt
+    docker-compose up -d mqtt
+
+You can install the client tools to test your running container
+
+    sudo apt-get mosquitto-clients
+    mosquitto_sub -h localhost -v -t 'home/#'  # Subscribe for new messages on any home topic -> home/*
+    # Open up another terminal window
+    mosquitto_pub -h localhost -t 'home/sensor' -m "MQTT is running"  # Publish message to Topic: home/sensor
+    # After publishing the message you should see 'MQTT is running' on the first terminal window 
+
 ### RPI-Monitor
 
 `RPI-Monitor` keeps an eye on your raspberry itself and monitors the global health status (cpu, mem, temperature) as well as service availability.
