@@ -71,6 +71,23 @@ services:
     command: serve
     container_name: "rpi-433rc"
 
+  pnp:
+    build:
+      context: "https://github.com/HazardDede/pnp.git"
+      dockerfile: Dockerfile.arm32v7
+    volumes:
+      - /home/pi/configs/pnp/config.json:/config/config.json:ro
+    links:
+      - mqtt
+      - influxdb
+    environment:
+      - ZWAY_USER=${ZWAY_USER}
+      - ZWAY_PASSWORD=${ZWAY_PASSWORD}
+      - INFLUX_PASSWORD=${INFLUX_PASSWORD}
+      - LOG_LEVEL=INFO
+    restart: always
+    container_name: "pnp"
+
   mqtt:
     image: robotany/mosquitto-rpi
     restart: always
