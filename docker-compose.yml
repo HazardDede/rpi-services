@@ -101,10 +101,3 @@ services:
       - /var/log/mqtt:/mosquitto/log
     container_name: "mqtt"
 
-  rpi-monitor:
-    image: neoraptor/rpi-monitor:latest
-    # restart: always
-    ports:
-      - "8888:8888"
-      - "4200:4200"
-    container_name: rpi-monitor
