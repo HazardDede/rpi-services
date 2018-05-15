@@ -35,6 +35,8 @@ Unfortunately there are no pre-build `docker-compose` binaries for the ARM-archi
 
 Gratz! You are now running a docker featured multi-purpose raspberry server.
 
+TODO: Describe the docker-compose wrapper file and the environment variables
+
 ## RPI-Monitor 
 
 I use [RPI-Monitor](http://rpi-experiences.blogspot.de/p/rpi-monitor.html) to monitor service and the raspberry overall health.

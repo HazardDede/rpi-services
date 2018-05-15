@@ -1,0 +1,30 @@
+#!/bin/bash
+
+# Wrapper script around docker-compose to resolve environment
+# args which are used in the docker-compose.yml
+#
+# By default the main environment file is located outside this repo at
+#    /home/pi/configs/environment.sh
+# This is because the environment file might and probably will
+# contain sensitive information such as passwords.
+#
+# Please see the service definitions in the docker-compose.yml
+# and set the required environment variables accordingly.
+
+CONFIG_DIR=/home/pi/configs
+ENV_FILE=${CONFIG_DIR}/environment.sh
+
+if [ -e ${ENV_FILE} ]
+then
+    source ${ENV_FILE}
+fi
+
+if [ -z ${LOG_LEVEL+x} ]; then
+    # Setting LOG_LEVEL to default value
+    LOG_LEVEL=INFO}
+fi
+
+export LOG_LEVEL
+export CONFIG_DIR
+
+docker-compose $@
