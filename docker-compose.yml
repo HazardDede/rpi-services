@@ -51,6 +51,7 @@ services:
       - INFLUX_HOST=influxdb
       - INFLUX_DATABASE=smarthome
       - LOG_LEVEL=INFO
+    restart: always
     container_name: "influx-dht22"
 
   rpi-433rc:
@@ -63,7 +64,7 @@ services:
     ports:
       - "5555:5000"
     volumes:
-      - ./conf/rpi-433rc/devices.json:/conf/devices.json
+      - /home/pi/configs/rpi-433rc/devices.json:/conf/devices.json:ro
     environment:
       - GPIO_OUT=17
       - CONFIG_DIR=/conf
