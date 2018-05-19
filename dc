@@ -21,7 +21,7 @@ fi
 
 if [ -z ${LOG_LEVEL+x} ]; then
     # Setting LOG_LEVEL to default value
-    LOG_LEVEL=INFO}
+    LOG_LEVEL=INFO
 fi
 
 export LOG_LEVEL
