@@ -23,7 +23,7 @@ services:
       - INFLUXDB_INIT_PWD=root
       - PRE_CREATE_DB=smarthome
     container_name: influxdb
-  
+
   grafana:
     image: "fg2it/grafana-armhf:v4.6.3"
     restart: always
@@ -57,7 +57,7 @@ services:
 
   pnp:
     build:
-      context: "https://github.com/HazardDede/pnp.git#v0.7.1"
+      context: "https://github.com/HazardDede/pnp.git#v0.9.0"
       dockerfile: Dockerfile.arm32v7
     cap_add:
       - SYS_RAWIO
@@ -69,6 +69,8 @@ services:
     links:
       - mqtt
       - influxdb
+    ports:
+      - "9999:9999"
     environment:
       - ZWAY_USER=${ZWAY_USER}
       - ZWAY_PASSWORD=${ZWAY_PASSWORD}
@@ -89,3 +91,19 @@ services:
       - /var/log/mqtt:/mosquitto/log
     container_name: "mqtt"
 
+  hass:
+    image: homeassistant/raspberrypi3-homeassistant:0.74.2
+    network_mode: "host"
+    restart: always
+#    links:
+#      - "mqtt:mqtt"
+#      - "rpi-433rc:rpi-433rc"
+#      - "influxdb:influxdb"
+    ports:
+      - "8123:8123"
+      - "80:80"
+    volumes:
+      - ${CONFIG_DIR}/home-assistant-config:/config
+    environment:
+      - TZ=Europe/Berlin
+    container_name: "hass"
