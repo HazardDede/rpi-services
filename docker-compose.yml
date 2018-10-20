@@ -57,7 +57,7 @@ services:
 
   pnp:
     build:
-      context: "https://github.com/HazardDede/pnp.git#v0.9.0"
+      context: "https://github.com/HazardDede/pnp.git#v0.11.1"
       dockerfile: Dockerfile.arm32v7
     cap_add:
       - SYS_RAWIO
@@ -65,7 +65,8 @@ services:
     devices:
       - /dev/mem
     volumes:
-      - ${CONFIG_DIR}/pnp/config.json:/config/config.json:ro
+      - ${CONFIG_DIR}/pnp/:/config
+      - ${CONFIG_DIR}/pnp/logs:/logs
     links:
       - mqtt
       - influxdb
@@ -75,6 +76,7 @@ services:
       - ZWAY_USER=${ZWAY_USER}
       - ZWAY_PASSWORD=${ZWAY_PASSWORD}
       - INFLUX_PASSWORD=${INFLUX_PASSWORD}
+      - OPENWEATHER_API_KEY=${OPENWEATHER_API_KEY}
       - LOG_LEVEL=${LOG_LEVEL}
     restart: always
     container_name: "pnp"
