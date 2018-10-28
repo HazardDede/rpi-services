@@ -112,7 +112,7 @@ services:
 
   appdaemon:
     build:
-      context: "https://github.com/HazardDede/appdaemon.git#v0.2.0"
+      context: "https://github.com/HazardDede/appdaemon.git#v0.2.1"
       dockerfile: Dockerfile.armhf
     network_mode: "host"
     volumes:
