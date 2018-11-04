@@ -57,7 +57,7 @@ services:
 
   pnp:
     build:
-      context: "https://github.com/HazardDede/pnp.git#v0.11.1"
+      context: "https://github.com/HazardDede/pnp.git#v0.11.2"
       dockerfile: Dockerfile.arm32v7
     cap_add:
       - SYS_RAWIO
@@ -94,7 +94,7 @@ services:
     container_name: "mqtt"
 
   hass:
-    image: homeassistant/raspberrypi3-homeassistant:0.74.2
+    image: homeassistant/raspberrypi3-homeassistant:0.81.2
     network_mode: "host"
     restart: always
 #    links:
@@ -120,5 +120,6 @@ services:
     environment:
       - TZ=Europe/Berlin
       - HA_URL=http://localhost:8123
+      - HA_KEY=${HA_KEY}
     container_name: "appdaemon"
         
