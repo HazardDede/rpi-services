@@ -57,7 +57,7 @@ services:
 
   pnp:
     build:
-      context: "https://github.com/HazardDede/pnp.git#v0.11.2"
+      context: "https://github.com/HazardDede/pnp.git#v0.11.3"
       dockerfile: Dockerfile.arm32v7
     cap_add:
       - SYS_RAWIO
