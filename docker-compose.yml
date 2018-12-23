@@ -94,7 +94,7 @@ services:
     container_name: "mqtt"
 
   hass:
-    image: homeassistant/raspberrypi3-homeassistant:0.81.2
+    image: homeassistant/raspberrypi3-homeassistant:0.84.6
     network_mode: "host"
     restart: always
 #    links:
@@ -112,7 +112,7 @@ services:
 
   appdaemon:
     build:
-      context: "https://github.com/HazardDede/appdaemon.git#v0.3.0"
+      context: "https://github.com/HazardDede/appdaemon.git#v0.3.2"
       dockerfile: Dockerfile.armhf
     network_mode: "host"
     volumes:
@@ -120,6 +120,6 @@ services:
     environment:
       - TZ=Europe/Berlin
       - HA_URL=http://localhost:8123
-      - HA_KEY=${HA_KEY}
+      - TOKEN=${HA_TOKEN}
     container_name: "appdaemon"
         
