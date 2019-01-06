@@ -111,15 +111,13 @@ services:
     container_name: "hass"
 
   appdaemon:
-    build:
-      context: "https://github.com/HazardDede/appdaemon.git#v0.3.2"
-      dockerfile: Dockerfile.armhf
+    image: hazard/appdaemon-apps:0.3.2-arm
     network_mode: "host"
     volumes:
       - ${CONFIG_DIR}/appdaemon:/apps
     environment:
       - TZ=Europe/Berlin
       - HA_URL=http://localhost:8123
-      - TOKEN=${HA_TOKEN}
+      - HA_TOKEN=${HA_TOKEN}
     container_name: "appdaemon"
         
