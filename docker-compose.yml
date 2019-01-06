@@ -38,7 +38,7 @@ services:
     container_name: grafana
 
   rpi-433rc:
-    build: "https://github.com/HazardDede/rpi-433rc.git"
+    image: "hazard/rpi-433rc:1.0.0"
     cap_add:
       - SYS_RAWIO
     privileged: true
