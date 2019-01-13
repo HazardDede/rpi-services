@@ -70,7 +70,7 @@ services:
       - /dev/mem
     volumes:
       - ${CONFIG_DIR}/pnp/:/config
-      - ${CONFIG_DIR}/pnp/logs:/logs
+      - ${LOG_DIRECTORY}:/logs
     links:
       - mqtt
       - influxdb
@@ -109,7 +109,7 @@ services:
       - "8123:8123"
       - "80:80"
     volumes:
-      - ${CONFIG_DIR}/home-assistant-config:/config
+      - /home/pi/configs/home-assistant-config:/config
     environment:
       - TZ=Europe/Berlin
     container_name: "hass"

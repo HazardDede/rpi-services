@@ -4,15 +4,17 @@
 # args which are used in the docker-compose.yml
 #
 # By default the main environment file is located outside this repo at
-#    /home/pi/configs/environment.sh
+#    /home/pi/rpi-configs/environment.sh
 # This is because the environment file might and probably will
 # contain sensitive information such as passwords.
 #
 # Please see the service definitions in the docker-compose.yml
 # and set the required environment variables accordingly.
 
-CONFIG_DIR=/home/pi/configs
+MACHINE_NAME=services
+CONFIG_DIR=/home/pi/rpi-configs/${MACHINE_NAME}
 ENV_FILE=${CONFIG_DIR}/environment.sh
+LOG_DIRECTORY=/home/pi/logs
 
 if [ -e ${ENV_FILE} ]
 then
@@ -26,5 +28,6 @@ fi
 
 export LOG_LEVEL
 export CONFIG_DIR
+export LOG_DIRECTORY
 
 docker-compose $@
