@@ -60,9 +60,7 @@ services:
     container_name: "rpi-433rc"
 
   pnp:
-    build:
-      context: "https://github.com/HazardDede/pnp.git#v0.11.3"
-      dockerfile: Dockerfile.arm32v7
+    image: "hazard/pnp:0.13.0-arm"
     cap_add:
       - SYS_RAWIO
     privileged: true
