@@ -60,7 +60,7 @@ services:
     container_name: "rpi-433rc"
 
   pnp:
-    image: "hazard/pnp:0.13.0-arm"
+    image: "hazard/pnp:0.14.0-arm"
     cap_add:
       - SYS_RAWIO
     privileged: true
