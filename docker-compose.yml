@@ -96,7 +96,7 @@ services:
     container_name: "mqtt"
 
   hass:
-    image: homeassistant/raspberrypi3-homeassistant:0.88.1
+    image: homeassistant/raspberrypi3-homeassistant:0.88.2
     restart: unless-stopped
     network_mode: "host"
 #    links:
