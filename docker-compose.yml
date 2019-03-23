@@ -59,6 +59,29 @@ services:
     command: serve
     container_name: "rpi-433rc"
 
+  433rc:
+    image: "hazard/rpi-433rc:1.1.0"
+    restart: unless-stopped
+    cap_add:
+      - SYS_RAWIO
+    privileged: true
+    devices:
+      - /dev/mem
+    ports:
+      - "5000:5000"
+    volumes:
+      - ${CONFIG_DIR}/433rc/devices.json:/conf/devices.json:ro
+    environment:
+      - GPIO_OUT=17
+      - CONFIG_DIR=/conf
+      - MQTT_HOST=services
+      - MQTT_ROOT=homeassistant
+      - MQTT_DISCOVERY=1
+    links:
+      - mqtt
+    command: serve
+    container_name: "433rc"
+
   pnp:
     image: "hazard/pnp:0.14.0-arm"
     restart: unless-stopped
