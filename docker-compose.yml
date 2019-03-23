@@ -68,13 +68,13 @@ services:
     devices:
       - /dev/mem
     ports:
-      - "5000:5000"
+      - "7777:5000"
     volumes:
       - ${CONFIG_DIR}/433rc/devices.json:/conf/devices.json:ro
     environment:
       - GPIO_OUT=17
       - CONFIG_DIR=/conf
-      - MQTT_HOST=stack01
+      - MQTT_HOST=mqtt
       - MQTT_ROOT=homeassistant
       - MQTT_DISCOVERY=1
     links:
