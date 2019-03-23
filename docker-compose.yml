@@ -37,28 +37,6 @@ services:
       - ./conf/grafana.ini:/etc/grafana/grafana.ini
     container_name: grafana
 
-  rpi-433rc:
-    image: "hazard/rpi-433rc:1.0.1"
-    restart: unless-stopped
-    cap_add:
-      - SYS_RAWIO
-    privileged: true
-    devices:
-      - /dev/mem
-    ports:
-      - "5555:5000"
-    volumes:
-      - ${CONFIG_DIR}/rpi-433rc/devices.json:/conf/devices.json:ro
-    environment:
-      - GPIO_OUT=17
-      - CONFIG_DIR=/conf
-      - MQTT_HOST=mqtt
-      - MQTT_TOPIC=r433/{device_name}/switch
-    links:
-      - mqtt
-    command: serve
-    container_name: "rpi-433rc"
-
   433rc:
     image: "hazard/rpi-433rc:1.1.0"
     restart: unless-stopped
