@@ -16,7 +16,7 @@ services:
     ports:
       - "8086:8086"
     volumes:
-      - /var/influxdb:/data
+      - /media/usb/influxdb:/data
       - ./conf/influxdb.conf:/etc/influxdb/influxdb.conf
     environment:
       - ADMIN_USER=root
@@ -32,8 +32,8 @@ services:
     links:
       - influxdb
     volumes:
-      - /var/grafana:/var/lib/grafana
-      - /var/log/grafana:/var/log/grafana
+      - /media/usb/grafana/data:/var/lib/grafana
+      - /media/usb/grafana/log:/var/log/grafana
       - ./conf/grafana.ini:/etc/grafana/grafana.ini
     container_name: grafana
 
