@@ -108,7 +108,7 @@ services:
       - "8123:8123"
       - "80:80"
     volumes:
-      - /media/usb/home-assistant:/config
+      - /media/usb/home-assistant-config:/config
     environment:
       - TZ=Europe/Berlin
     container_name: "hass"
